@@ -36,10 +36,15 @@ app.get("/stats", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/stats.html"));
 });
 
-app.post("/api/workouts", async (req, res) => {
-    const newWorkout = await db.Workout.create({ type: "workout" })
-    res.json(newWorkout);
-});
+app.post("/api/workouts", ({ body }, res) => {
+    db.Workout.create(body)
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
 app.put("/api/workouts/:id", (req, res) => {
     const id = req.params.id;
