@@ -3,13 +3,11 @@ async function initWorkout() {
   console.log("Last workout:", lastWorkout);
 
   console.log(lastWorkout.exercises[0].duration)
-  var a = 0;
   
+  let a = 0;
   for(i = 0; i < lastWorkout.exercises.length; i++){
     a += lastWorkout.exercises[i].duration
-  
   }
-
   lastWorkout.totalDuration = a;
 
   if (lastWorkout) {
